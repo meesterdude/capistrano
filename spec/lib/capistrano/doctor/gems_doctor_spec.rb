@@ -1,6 +1,5 @@
 require "spec_helper"
 require "capistrano/doctor/gems_doctor"
-require "airbrussh/version"
 require "sshkit/version"
 
 module Capistrano
@@ -27,10 +26,6 @@ module Capistrano
           output(/sshkit\s+#{Regexp.quote(SSHKit::VERSION)}/).to_stdout
       end
 
-      it "prints the Airbrussh version" do
-        expect { doc.call }.to\
-          output(/airbrussh\s+#{Regexp.quote(Airbrussh::VERSION)}/).to_stdout
-      end
 
       it "warns that new version is available" do
         Gem.stubs(:latest_version_for).returns(Gem::Version.new("99.0.0"))
